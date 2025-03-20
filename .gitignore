@@ -44,6 +44,7 @@ FreeRTOSConfig.h.bak
 *.pdf
 *.zip
 RT-THread/
+Target1/
 
 #JLINK file
 JLinkLog.txt
