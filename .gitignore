@@ -20,6 +20,7 @@
 .mxproject
 *.uvoptx
  
+# 文件夹
 RTE/
 Templates/
 Examples/
@@ -33,21 +34,24 @@ DebugConfig/
 !*.bin
 !*.hex
 
-#HAL
+# HAL
 Drivers/
 
 # FreeRTOS 特定配置和生成的日志文件
 FreeRTOSConfig.h.bak
 *.log
 
-#其他
-*.pdf
-*.zip
-RT-THread/
-Target1/
 
-#JLINK file
+# JLINK file
 JLinkLog.txt
 JLinkSettings.ini
 *.dbgconf
 
+# 其他
+*.pdf
+*.zip
+RT-THread/
+FreeRtos/
+Target1/
+en.stsw-link004/
+*.docx

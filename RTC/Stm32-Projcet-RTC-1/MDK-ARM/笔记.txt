@@ -1,0 +1,15 @@
+RTC设置计时器流程：
+	HAL_RTC_SetTime -> RTC_WriteTimeCounter(设置RTC计数器) -> RTC_EnterInitMode(进入初始模式) -> 写计数器 -> RTC_ExitInitMode(退出初始模式)
+
+RTC进入和退出初始模式的原因：
+	必须设置RTC_CRL寄存器的CNF位，使得RTC进入配置模式后，才能写入RTC_PRL、RTC_CNT、RTC_ALR寄存器
+	另外，对RTC任何寄存器的写操作，都必须在前一次写操作结束后进行。可通过查询RTC_CR寄存器中的RTOFF状态位，判断RTC寄存器是否处于更新中。
+	仅当RTOFF状态位是'1'，才能写入RTC寄存器
+	
+	配置过程：
+		1.查询RTOFF位，直到RTOFF的值变为'1'
+		2.置CNF值为1，进入配置模式
+		3.对一个或者多个RTC寄存器进行写操作
+		4.清除CNF标志位，退出配置模式
+		5.查询RTOFF位，直到RTOFF的值变为'1'以确定写操作完成
+	仅当CNF标志位被清除时，写操作才能进行，这个过程至少需要3个RTCCLK周期
